@@ -41,52 +41,40 @@ void main() {
                   color: Colors.teal.shade100,
                 ),
               ),
-              Container(
+              Card(
                 color: Colors.grey.shade100,
-                padding: EdgeInsets.all(10),
                 margin: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.call,
-                      color: Colors.teal,
+                child: ListTile(
+                  leading: Icon(
+                    Icons.phone,
+                    color: Colors.teal,
+                  ),
+                  title: Text(
+                    '+880 179 773 6503',
+                    style: TextStyle(
+                      fontFamily: 'SourceSansPro',
+                      fontSize: 20,
+                      color: Colors.teal.shade900,
                     ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      '+880 179 773 6503',
-                      style: TextStyle(
-                        fontFamily: 'SourceSansPro',
-                        fontSize: 20,
-                        color: Colors.teal.shade900,
-                      ),
-                    )
-                  ],
+                  ),
                 ),
               ),
-              Container(
+              Card(
                 color: Colors.grey.shade100,
-                padding: EdgeInsets.all(10),
                 margin: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.email,
-                      color: Colors.teal,
+                child: ListTile(
+                  leading: Icon(
+                    Icons.email,
+                    color: Colors.teal,
+                  ),
+                  title: Text(
+                    'fardawshassan@gmail.com',
+                    style: TextStyle(
+                      fontFamily: 'SourceSansPro',
+                      fontSize: 20,
+                      color: Colors.teal.shade900,
                     ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      'fardawshassan@gmail.com',
-                      style: TextStyle(
-                        fontFamily: 'SourceSansPro',
-                        fontSize: 20,
-                        color: Colors.teal.shade900,
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
               ),
             ],
@@ -96,3 +84,55 @@ void main() {
     ),
   );
 }
+
+
+
+
+// Container(
+//                 color: Colors.grey.shade100,
+//                 padding: EdgeInsets.all(10),
+//                 margin: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+//                 child: Row(
+//                   children: [
+//                     Icon(
+//                       Icons.call,
+//                       color: Colors.teal,
+//                     ),
+//                     SizedBox(
+//                       width: 10,
+//                     ),
+//                     Text(
+//                       '+880 179 773 6503',
+//                       style: TextStyle(
+//                         fontFamily: 'SourceSansPro',
+//                         fontSize: 20,
+//                         color: Colors.teal.shade900,
+//                       ),
+//                     )
+//                   ],
+//                 ),
+//               ),
+//               Container(
+//                 color: Colors.grey.shade100,
+//                 padding: EdgeInsets.all(10),
+//                 margin: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+//                 child: Row(
+//                   children: [
+//                     Icon(
+//                       Icons.email,
+//                       color: Colors.teal,
+//                     ),
+//                     SizedBox(
+//                       width: 10,
+//                     ),
+//                     Text(
+//                       'fardawshassan@gmail.com',
+//                       style: TextStyle(
+//                         fontFamily: 'SourceSansPro',
+//                         fontSize: 20,
+//                         color: Colors.teal.shade900,
+//                       ),
+//                     ),
+//                   ],
+//                 ),
+//               ),

@@ -8,3 +8,10 @@ Small steps of learning flutter.
   alt="Daily task app's screenshot"
   title="Daily Task app"
   style="display: inline-block; margin: 0 auto;width:150px;">
+  
+  #### Step-2: A personal card app.
+<img
+  src="/beta_p/beta_p.jpg"
+  alt="Personal card app's screenshot"
+  title="Personal card app"
+  style="display: inline-block; margin: 0 auto;width:150px;">

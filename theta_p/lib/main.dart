@@ -1,6 +1,5 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,10 +20,17 @@ class MyApp extends StatelessWidget {
 class Home extends StatelessWidget {
   const Home({super.key});
 
-  Expanded keyButton(Color btn_colour) {
+  audioPlayer(int key) {
+    final player = AudioPlayer();
+    player.play(AssetSource('note$key.wav'));
+  }
+
+  Expanded keyButton(Color btn_colour, int key) {
     return Expanded(
       child: TextButton(
-          onPressed: () {},
+          onPressed: () {
+            audioPlayer(key);
+          },
           style: TextButton.styleFrom(padding: EdgeInsets.all(0)),
           child: Container(
             color: btn_colour,
@@ -41,13 +47,13 @@ class Home extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            keyButton(Colors.purpleAccent),
-            keyButton(Colors.blueAccent),
-            keyButton(Colors.lightBlue),
-            keyButton(Colors.greenAccent),
-            keyButton(Colors.yellowAccent),
-            keyButton(Colors.orangeAccent),
-            keyButton(Colors.redAccent),
+            keyButton(Colors.purpleAccent, 1),
+            keyButton(Colors.blueAccent, 2),
+            keyButton(Colors.lightBlue, 3),
+            keyButton(Colors.greenAccent, 4),
+            keyButton(Colors.yellowAccent, 5),
+            keyButton(Colors.orangeAccent, 6),
+            keyButton(Colors.redAccent, 7),
           ],
         ),
       ),

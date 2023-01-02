@@ -8,8 +8,8 @@ class Question {
 }
 
 class QuizBrain {
-  int questionNumber = 0;
-  List<Question> questionPairs = [
+  int _questionNumber = 0;
+  List<Question> _questionPairs = [
     Question('Some cats are actually allergic to humans', true),
     Question('You can lead a cow down stairs but not up stairs.', false),
     Question('Approximately one quarter of human bones are in the feet.', true),
@@ -38,10 +38,28 @@ class QuizBrain {
   ];
 
   String getQuestion() {
-    return questionPairs[questionNumber].question;
+    return _questionPairs[_questionNumber].question;
   }
 
   bool checkAnswer(bool userAns) {
-    return (userAns == questionPairs[questionNumber++].answer);
+    return (userAns == _questionPairs[_questionNumber].answer);
+  }
+
+  bool isFinished() {
+    if (_questionNumber == _questionPairs.length - 1) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  void reset() {
+    _questionNumber = 0;
+  }
+
+  void nextQuestion() {
+    if (_questionNumber < _questionPairs.length - 1) {
+      _questionNumber++;
+    }
   }
 }

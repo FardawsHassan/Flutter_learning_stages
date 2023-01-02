@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'questions.dart';
 
-QuizBrain questions = QuizBrain();
+QuizBrain quizBrain = QuizBrain();
 
 void main() {
   runApp(const MyApp());
@@ -29,22 +30,36 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   List<Icon> scores = [];
+
   void check_ans(bool ans) {
-    if (ans) {
-      scores.add(
-        Icon(
-          Icons.check,
-          color: Colors.green,
-        ),
-      );
-    } else {
-      scores.add(
-        Icon(
-          Icons.close,
-          color: Colors.red,
-        ),
-      );
-    }
+    setState(() {
+      if (quizBrain.isFinished()) {
+        Alert(
+          context: context,
+          title: "Finished!",
+          desc: "You've reached the end of the quiz.",
+        ).show();
+
+        quizBrain.reset();
+        scores.clear();
+      } else {
+        if (quizBrain.checkAnswer(ans)) {
+          scores.add(Icon(
+            Icons.check,
+            color: Colors.green,
+          ));
+        } else {
+          scores.add(
+            Icon(
+              Icons.close,
+              color: Colors.red,
+            ),
+          );
+        }
+
+        quizBrain.nextQuestion();
+      }
+    });
   }
 
   @override
@@ -64,7 +79,7 @@ class _HomeState extends State<Home> {
                   padding: const EdgeInsets.all(15.0),
                   child: Center(
                     child: Text(
-                      questions.getQuestion(),
+                      quizBrain.getQuestion(),
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.white,
@@ -81,13 +96,7 @@ class _HomeState extends State<Home> {
                 child: TextButton(
                   style: ButtonStyle(),
                   onPressed: () {
-                    setState(() {
-                      if (questions.checkAnswer(true)) {
-                        check_ans(true);
-                      } else {
-                        check_ans(false);
-                      }
-                    });
+                    check_ans(true);
                   },
                   child: Text(
                     "True",
@@ -104,13 +113,7 @@ class _HomeState extends State<Home> {
                 height: 60,
                 child: TextButton(
                   onPressed: () {
-                    setState(() {
-                      if (questions.checkAnswer(false)) {
-                        check_ans(true);
-                      } else {
-                        check_ans(false);
-                      }
-                    });
+                    check_ans(false);
                   },
                   child: Text(
                     "False",

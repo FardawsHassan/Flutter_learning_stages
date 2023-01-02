@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'questions.dart';
+
+QuizBrain questions = QuizBrain();
 
 void main() {
   runApp(const MyApp());
@@ -61,7 +64,7 @@ class _HomeState extends State<Home> {
                   padding: const EdgeInsets.all(15.0),
                   child: Center(
                     child: Text(
-                      'You can lead a cow down stairs but not up stairs.',
+                      questions.getQuestion(),
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.white,
@@ -79,7 +82,11 @@ class _HomeState extends State<Home> {
                   style: ButtonStyle(),
                   onPressed: () {
                     setState(() {
-                      check_ans(true);
+                      if (questions.checkAnswer(true)) {
+                        check_ans(true);
+                      } else {
+                        check_ans(false);
+                      }
                     });
                   },
                   child: Text(
@@ -98,7 +105,11 @@ class _HomeState extends State<Home> {
                 child: TextButton(
                   onPressed: () {
                     setState(() {
-                      check_ans(false);
+                      if (questions.checkAnswer(false)) {
+                        check_ans(true);
+                      } else {
+                        check_ans(false);
+                      }
                     });
                   },
                   child: Text(

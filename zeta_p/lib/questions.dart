@@ -1,10 +1,7 @@
 class Question {
   String question = '';
   bool answer = false;
-  Question(String q, bool a) {
-    question = q;
-    answer = a;
-  }
+  Question(this.question, this.answer);
 }
 
 class QuizBrain {
@@ -46,7 +43,7 @@ class QuizBrain {
   }
 
   bool isFinished() {
-    if (_questionNumber == _questionPairs.length - 1) {
+    if (_questionNumber >= _questionPairs.length - 1) {
       return true;
     } else {
       return false;

@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'inputPage.dart';
+import 'input_page.dart';
 
 void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     title: 'BMI Calculator',
     theme: ThemeData.dark().copyWith(
-      scaffoldBackgroundColor: Color(0xFF0A0E21),
-      appBarTheme: AppBarTheme(
+      scaffoldBackgroundColor: const Color(0xFF0A0E21),
+      appBarTheme: const AppBarTheme(
         backgroundColor: Color(0xFF0A0E21),
       ),
     ),
-    home: InputPage(),
+    home: const InputPage(),
   ));
 }

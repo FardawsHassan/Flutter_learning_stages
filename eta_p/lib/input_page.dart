@@ -8,6 +8,19 @@ enum Gender {
 
 const Color activeCardColor = Color(0xff1d1e33);
 const Color inActiveCardColor = Color(0xff111328);
+const Color lebelTextColor = Color(0xff8d8d98);
+const Color bottomAppBarColor = Color(0xffEA1556);
+
+const TextStyle lebelTextStyle = TextStyle(
+  fontSize: 18,
+  color: lebelTextColor,
+);
+
+const TextStyle boldTextStyle = TextStyle(
+  fontSize: 50,
+  color: Colors.white,
+  fontWeight: FontWeight.w900,
+);
 
 class InputPage extends StatefulWidget {
   const InputPage({super.key});
@@ -18,6 +31,10 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
   Gender? selectedGender;
+  double height = 180;
+  int age = 25;
+  int weight = 56;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +50,7 @@ class _InputPageState extends State<InputPage> {
             child: Row(
               children: [
                 InputCard(
-                  cardContent: InputCardContent(FontAwesomeIcons.mars, 'MALE'),
+                  cardContent: GenderCardContent(FontAwesomeIcons.mars, 'MALE'),
                   onpressed: () {
                     setState(() {
                       selectedGender = Gender.male;
@@ -45,7 +62,7 @@ class _InputPageState extends State<InputPage> {
                 ),
                 InputCard(
                   cardContent:
-                      InputCardContent(FontAwesomeIcons.venus, 'FEMALE'),
+                      GenderCardContent(FontAwesomeIcons.venus, 'FEMALE'),
                   onpressed: () {
                     setState(() {
                       selectedGender = Gender.female;
@@ -61,15 +78,143 @@ class _InputPageState extends State<InputPage> {
           Expanded(
             child: Row(
               children: [
-                InputCard(),
+                InputCard(
+                  cardContent: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Padding(
+                        padding:
+                            EdgeInsets.symmetric(vertical: 10, horizontal: 0),
+                        child: Text(
+                          'HEIGHT',
+                          style: lebelTextStyle,
+                        ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.baseline,
+                        textBaseline: TextBaseline.alphabetic,
+                        children: [
+                          Text(
+                            height.round().toString(),
+                            style: boldTextStyle,
+                          ),
+                          const Text(
+                            'cm',
+                            style: lebelTextStyle,
+                          ),
+                        ],
+                      ),
+                      SliderTheme(
+                        data: const SliderThemeData(
+                          activeTrackColor: Colors.white,
+                          inactiveTrackColor: lebelTextColor,
+                          thumbColor: bottomAppBarColor,
+                          thumbShape:
+                              RoundSliderThumbShape(enabledThumbRadius: 11),
+                          overlayShape:
+                              RoundSliderOverlayShape(overlayRadius: 22),
+                          overlayColor: Color(0x30EA1556),
+                          trackShape: RectangularSliderTrackShape(),
+                        ),
+                        child: Slider(
+                          value: height,
+                          min: 0.0,
+                          max: 350.0,
+                          onChanged: (double newHeight) {
+                            setState(() {
+                              height = newHeight;
+                            });
+                          },
+                        ),
+                      )
+                    ],
+                  ),
+                ),
               ],
             ),
           ),
           Expanded(
             child: Row(
               children: [
-                InputCard(),
-                InputCard(),
+                InputCard(
+                  cardContent: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        'WEIGHT',
+                        style: lebelTextStyle,
+                      ),
+                      Text(
+                        weight.toString(),
+                        style: boldTextStyle,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          CustomButton(
+                            icon: FontAwesomeIcons.minus,
+                            onpressed: (() {
+                              setState(() {
+                                weight > 0 ? weight-- : null;
+                              });
+                            }),
+                          ),
+                          SizedBox(
+                            width: 12,
+                          ),
+                          CustomButton(
+                            icon: FontAwesomeIcons.plus,
+                            onpressed: () {
+                              setState(() {
+                                weight++;
+                              });
+                            },
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                InputCard(
+                  cardContent: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        'AGE',
+                        style: lebelTextStyle,
+                      ),
+                      Text(
+                        age.toString(),
+                        style: boldTextStyle,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          CustomButton(
+                            icon: FontAwesomeIcons.minus,
+                            onpressed: (() {
+                              setState(() {
+                                age > 0 ? age-- : null;
+                              });
+                            }),
+                          ),
+                          SizedBox(
+                            width: 12,
+                          ),
+                          CustomButton(
+                            icon: FontAwesomeIcons.plus,
+                            onpressed: () {
+                              setState(() {
+                                age++;
+                              });
+                            },
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),
@@ -77,7 +222,7 @@ class _InputPageState extends State<InputPage> {
             margin: const EdgeInsets.only(top: 7.5),
             width: double.infinity,
             height: 60.0,
-            color: const Color(0xffEA1556),
+            color: bottomAppBarColor,
             child: const Center(
               child: Text(
                 'CALCULATE',
@@ -93,10 +238,32 @@ class _InputPageState extends State<InputPage> {
   }
 }
 
-class InputCardContent extends StatelessWidget {
+class CustomButton extends StatelessWidget {
+  IconData icon;
+  VoidCallback? onpressed;
+  CustomButton({required this.icon, this.onpressed});
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+      onPressed: onpressed,
+      elevation: 0,
+      shape: CircleBorder(),
+      fillColor: lebelTextColor,
+      constraints: const BoxConstraints.tightFor(
+        width: 45.0,
+        height: 45.0,
+      ),
+      child: Icon(
+        icon,
+      ),
+    );
+  }
+}
+
+class GenderCardContent extends StatelessWidget {
   final IconData icon;
   final String iconLebel;
-  InputCardContent(this.icon, this.iconLebel);
+  GenderCardContent(this.icon, this.iconLebel);
 
   @override
   Widget build(BuildContext context) {
@@ -112,10 +279,7 @@ class InputCardContent extends StatelessWidget {
         ),
         Text(
           iconLebel,
-          style: const TextStyle(
-            fontSize: 18,
-            color: Color(0xff8d8d98),
-          ),
+          style: lebelTextStyle,
         )
       ],
     );

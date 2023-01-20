@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "675688110731",
+    "project_id": "gossipper-94197",
+    "storage_bucket": "gossipper-94197.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:675688110731:android:089e1f1d1f21e819b3928e",
+        "android_client_info": {
+          "package_name": "com.fardawshassan.delta_p"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "675688110731-cbsprakmm0al2391dvf2sn91oth5qer4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAUdLvq0ue8UgJZAdEyttnn1BRSdCImyg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "675688110731-cbsprakmm0al2391dvf2sn91oth5qer4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
